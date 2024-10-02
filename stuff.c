@@ -165,3 +165,96 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int rows, cols;
+    
+    // Step 2: Get the dimensions of the matrices from the user
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    // Step 3: Dynamically allocate memory for matrices A, B, and C
+    int **matrixA = (int **)malloc(rows * sizeof(int *));
+    int **matrixB = (int **)malloc(rows * sizeof(int *));
+    int **matrixC = (int **)malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++) {
+        matrixA[i] = (int *)malloc(cols * sizeof(int));
+        matrixB[i] = (int *)malloc(cols * sizeof(int));
+        matrixC[i] = (int *)malloc(cols * sizeof(int));
+    }
+
+    // Step 4: Get the elements of matrix A from the user
+    printf("Enter elements of Matrix A:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element A[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matrixA[i][j]);
+        }
+    }
+
+    // Step 4: Get the elements of matrix B from the user
+    printf("Enter elements of Matrix B:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element B[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matrixB[i][j]);
+        }
+    }
+
+    // Step 5: Perform element-wise addition of matrices A and B
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrixC[i][j] = matrixA[i][j] + matrixB[i][j];
+        }
+    }
+
+    // Step 6: Display the resultant matrix (Matrix C)
+    printf("Resultant Matrix (A + B):\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%d\t", matrixC[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Step 7: Free dynamically allocated memory
+    for (int i = 0; i < rows; i++) {
+        free(matrixA[i]);
+        free(matrixB[i]);
+        free(matrixC[i]);
+    }
+    free(matrixA);
+    free(matrixB);
+    free(matrixC);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
